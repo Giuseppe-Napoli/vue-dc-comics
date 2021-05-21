@@ -3,7 +3,9 @@
     <img src="../assets/img/dc-logo.png" alt="Logo">
     <nav>
       <ul>
-        <li v-for="(link, index) in links" :key="index">
+        <li v-for="(link, index) in menu" 
+        @click="changeActive(index)"
+        :key="index">
           <a :class="{'active': link.current}" :href="link.url">{{ link.text}}</a>
         </li>
         <!-- <li><a href="/">comics</a></li>
@@ -23,63 +25,22 @@
 <script>
 export default {
   name:'Header',
+  props:{
+    menu: Array
+  },
   data(){
-    
     return{
-      links:[
-        {
-          text:'characters',
-          url: '#',
-          current: false
-        },
-        {
-          text:'comics',
-          url: '/',
-          current: true
-        },
-        {
-          text:'movies',
-          url: '#',
-          current: false
-        },
-        {
-          text:'tv',
-          url: '#',
-          current: false
-        },
-        {
-          text:'games',
-          url: '#',
-          current: false
-        },
-        {
-          text:'collectibles',
-          url: '#',
-          current: false
-        },
-        {
-          text:'videos',
-          url: '#',
-          current: false
-        },
-        {
-          text:'fans',
-          url: '#',
-          current: false
-        },
-        {
-          text:'news',
-          url: '#',
-          current: false
-        },
-        {
-          text:'shop',
-          url: '#',
-          current: false
-        },
-      ]
+      links:[],
     }
-  }
+  },
+  methods:{
+    changeActive(index){
+      this.menu.forEach((link)=>{
+        link.current = false
+      })
+      this.menu[index].current = true
+    }
+  },
 }
 </script>
 

@@ -6,7 +6,10 @@
         <nav class="left">
           <ul>
             <h3>dc comics</h3>
-            <li v-for="(dcComic,index) in dcComics" :key="index">
+            <li 
+              v-for="(dcComic,index) in firstCol" 
+              :key="index" 
+              :oneCol="firstCol">
               <a :href="dcComic.url">{{dcComic.text}}</a>
             </li>
             <!-- <li><a href="#">Comics</a></li>
@@ -27,7 +30,10 @@
         <nav class="left">
           <ul>
             <h3>dc</h3>
-            <li v-for="(dc,index) in dcS" :key="index">
+            <li 
+              v-for="(dc,index) in secondCol"
+              :key="index"
+              :twoCol="secondCol">
               <a :href="dc.url">{{dc.text}}</a>
             </li>
             <!-- <li><a href="#">Privacy policy (New)</a></li>
@@ -45,7 +51,10 @@
         <nav class="left">
           <ul>
             <h3>sites</h3>
-            <li v-for="(site,index) in sites" :key="index">
+            <li
+              v-for="(site,index) in thirdCol"
+              :key="index"
+              :threeCol="thirdCol">
               <a :href="site.url">{{site.text}}</a>
             </li>
             <!-- <li><a href="#">MAD Magazine</a></li>
@@ -80,12 +89,25 @@
 </template>
 
 <script>
+import firstCol from "@/assets/data/first-array.js"
+import secondCol from "@/assets/data/second-array.js"
+import thirdCol from "@/assets/data/third-array.js"
 
 export default {
   name: 'Footer',
+  props:{
+    oneCol: Object,
+    twoCol: Object,
+    threeCol: Object,
+  },
   data(){
     return{
-      dcComics:[
+      //array inseriti attraverso file.js
+      firstCol,
+      secondCol,
+      thirdCol,
+        //sostituiti con i file.js
+/*       dcComics:[
         {
         text:'Characters',
         url:'#'
@@ -114,7 +136,7 @@ export default {
         text:'News',
         url:'#'
         },
-      ],
+      ], */
 
       shops:[
         {
@@ -127,7 +149,7 @@ export default {
         },
       ],
 
-      dcS:[
+/*       dcS:[
         {
         text:'Terms Of Use',
         url:'#'
@@ -172,8 +194,8 @@ export default {
         text:'Contact Us',
         url:'#'
         },
-      ],
-      sites: [
+      ], */
+/*       sites: [
         {
           text: 'DC',
           url: '#'
@@ -194,7 +216,7 @@ export default {
           text: 'DC Power Visa',
           url: '#'
         },
-      ]
+      ] */
     }
   }
 }
@@ -230,6 +252,9 @@ export default {
         a{
           font-size: 13px;
           color: #959595;
+          &:hover{
+            color:white
+          }
         }
       }
     }
